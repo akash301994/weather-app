@@ -1,0 +1,49 @@
+/* CSS class for center-aligned header */
+.forecast {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  
+  /* CSS class for search container */
+  .search-container {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px; /* Add margin to create space between search and current day */
+  }
+  
+  /* CSS class for current day container */
+  .current-day-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add margin to create space between current day and search */
+  }
+  
+  /* CSS class for current day box */
+  .current-day-box {
+    background-color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* CSS class for forecast container */
+  .forecast-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+  
+  /* CSS class for forecast boxes */
+  .forecast-box {
+    flex-basis: calc(20% - 10px);
+    background-color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* CSS class for past searches container */
+.past-searches-container {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin: 20px;
+  }
