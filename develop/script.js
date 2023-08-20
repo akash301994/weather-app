@@ -73,6 +73,25 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentDayContainer = document.querySelector(".current-day-box");
     const forecastContainers = document.querySelectorAll(".forecast-box");
     const pastSearchesContainer = document.querySelector(".past-searches-container");
+    const clearStorageButton = document.getElementById("clear-storage-button");
+
+    
+    clearStorageButton.addEventListener("click", function() {
+        
+        localStorage.removeItem("pastSearches");
+
+        
+        pastSearchesContainer.innerHTML = "<h2>Past Searches</h2>";
+    });
+
+    // click event listener to the past searches container
+    pastSearchesContainer.addEventListener("click", function(event) {
+        if (event.target.tagName === "P") {
+            const city = event.target.textContent;
+            queryInput.value = city; 
+            getWeatherForecast(city); 
+        }
+    });
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
@@ -86,16 +105,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function saveSearchToLocalStorage(city) {
-        // Get existing searches from local storage
+        // Get existing searches from local storage (if any)
         const existingSearches = JSON.parse(localStorage.getItem("pastSearches")) || [];
 
-        // new city to the array
+       
         existingSearches.push(city);
 
-        // Save the updated search history back to local storage
+        
         localStorage.setItem("pastSearches", JSON.stringify(existingSearches));
 
-        // Update the UI to show the updated search history
+        
         displayPastSearches(existingSearches);
     }
 
