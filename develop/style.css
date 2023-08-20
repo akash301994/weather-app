@@ -20,6 +20,11 @@
     margin-bottom: 20px; 
   }
   
+  .error-container {
+    text-align: center; 
+  }
+
+
   /*current day box */
 .current-day-box {
     background-color: #e0e0e0;
