@@ -66,3 +66,48 @@ function displayForecast(data) {
         `;
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector(".search-container");
+    const queryInput = document.getElementById("query");
+    const currentDayContainer = document.querySelector(".current-day-box");
+    const forecastContainers = document.querySelectorAll(".forecast-box");
+    const pastSearchesContainer = document.querySelector(".past-searches-container");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        const city = queryInput.value.trim();
+
+        if (city) {
+            saveSearchToLocalStorage(city);
+            getWeatherForecast(city);
+        }
+    });
+
+    function saveSearchToLocalStorage(city) {
+        // Get existing searches from local storage
+        const existingSearches = JSON.parse(localStorage.getItem("pastSearches")) || [];
+
+        // new city to the array
+        existingSearches.push(city);
+
+        // Save the updated search history back to local storage
+        localStorage.setItem("pastSearches", JSON.stringify(existingSearches));
+
+        // Update the UI to show the updated search history
+        displayPastSearches(existingSearches);
+    }
+
+    function displayPastSearches(searches) {
+        pastSearchesContainer.innerHTML = "<h2>Past Searches</h2>";
+
+        searches.forEach((search) => {
+            const searchItem = document.createElement("p");
+            searchItem.textContent = search;
+            pastSearchesContainer.appendChild(searchItem);
+        });
+    }
+
+    
+});
