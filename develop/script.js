@@ -2,9 +2,7 @@ const APIKey = "3486c501a31f92ae09c119b5ee7fae0e";
 
 const form = document.getElementById("form");
 const queryInput = document.getElementById("query");
-// const forecastContainer = document.querySelector(".forecast-container");
-const errorContainer = document.querySelector(".error-container")
-
+const errorContainer = document.querySelector(".error-container");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -17,7 +15,7 @@ form.addEventListener("submit", function (event) {
 });
 
 function getWeatherForecast(city) {
-  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}&units=metric`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}&units=imperial`;
 
   fetch(apiUrl)
     .then((response) => {
@@ -37,34 +35,37 @@ function getWeatherForecast(city) {
 }
 
 function displayForecast(data) {
-  // Display current day weather
+  console.log(data);
   const currentDayContainer = document.querySelector(".current-day-box");
   const currentTemperature = data.list[0].main.temp;
   const currentWindSpeed = data.list[0].wind.speed;
   const currentHumidity = data.list[0].main.humidity;
 
+
   currentDayContainer.innerHTML = `
+        <img src = 'https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png' alt = 'weather icon'/>
         <p>Date: ${new Date(data.list[0].dt * 1000).toLocaleDateString()}</p>
-        <p>Temperature: ${currentTemperature}°C</p>
+        <p>Temperature: ${currentTemperature}°F</p> 
         <p>Wind Speed: ${currentWindSpeed} m/s</p>
         <p>Humidity: ${currentHumidity}%</p>
+        
+        
     `;
 
-  // Display 5-day weather forecast
   const forecastBoxes = document.querySelectorAll(".forecast-box");
   for (let i = 0; i < forecastBoxes.length; i++) {
     const date = new Date(data.list[i * 8].dt * 1000);
     const dateString = date.toLocaleDateString();
-
     const temperature = data.list[i * 8].main.temp;
     const windSpeed = data.list[i * 8].wind.speed;
     const humidity = data.list[i * 8].main.humidity;
 
     forecastBoxes[i].innerHTML = `
+            <img src = 'https://openweathermap.org/img/wn/${data.list[i*8].weather[0].icon}.png' alt = 'weather icon'/>
             <p>Date: ${dateString}</p>
-            <p>Temperature: ${temperature}°C</p>
+            <p>Temperature: ${temperature}°F</p> 
             <p>Wind Speed: ${windSpeed} m/s</p>
-            <p>Humidity: ${humidity}%</p>
+            <p>Humidity: ${humidity}%</p>  
         `;
   }
 }
@@ -72,9 +73,10 @@ function displayForecast(data) {
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector(".search-container");
   const queryInput = document.getElementById("query");
-  const pastSearchesContainer = document.querySelector(".past-searches-container");
+  const pastSearchesContainer = document.querySelector(
+    ".past-searches-container"
+  );
   const clearStorageButton = document.getElementById("clear-storage-button");
-  
 
   clearStorageButton.addEventListener("click", function () {
     localStorage.removeItem("pastSearches");
@@ -122,5 +124,4 @@ document.addEventListener("DOMContentLoaded", function () {
       pastSearchesContainer.appendChild(searchItem);
     });
   }
-
 });

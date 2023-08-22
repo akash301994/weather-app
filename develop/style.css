@@ -1,7 +1,7 @@
 /* CSS class for center-aligned header */
 .forecast {
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: #91c6e9;
     padding: 10px;
   }
   
@@ -20,6 +20,7 @@
     margin-bottom: 20px; 
   }
   
+  /* error message for invalid city names */
   .error-container {
     text-align: center; 
   }
@@ -27,7 +28,7 @@
 
   /*current day box */
 .current-day-box {
-    background-color: #e0e0e0;
+    background-color: #91c6e9;
     padding: 20px;
     text-align: center;
   }
@@ -42,7 +43,7 @@
   /*forecast boxes */
 .forecast-box {
     flex-basis: calc(20% - 10px);
-    background-color: #e0e0e0;
+    background-color: #91c6e9;
     padding: 20px;
     text-align: center;
   }
