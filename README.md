@@ -12,6 +12,7 @@
 ![screenshot](./images/127.0.0.1_5501_index.html%20(1).png)
 ![screenshot](./images/127.0.0.1_5501_index.html%20(2).png)
 
-# Links for website and Gitgub
+# DEPLOYMENT AND GITHUB
 
-![link]
+* https://www.github.com/akash301994
+* https://akash301994.github.io/weather-app/
